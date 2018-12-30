@@ -1,0 +1,30 @@
+package com.ºØ∫œ¿‡¡∑œ∞;
+
+import java.io.*;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+public class Test {
+    public static void main(String[] args) throws IOException {
+        File file = new File("C:\\Users\\hasee\\Desktop\\java3.txt");
+        Reader in = new FileReader(file);
+        char[] data = new char[1024];
+        int len = in.read(data);
+        String str = new String(data,0,len);
+        in.close();
+        String[] strings = str.split("\n");
+        Map<Integer,String> map = new TreeMap<>((o1, o2) -> o1.compareTo(o2) * -1);
+        for(int i=0; i<strings.length; i++){
+            String[] strings1 = strings[i].split("\t");
+            map.put(Integer.parseInt(strings1[0]),strings1[1]);
+        }
+        Set<Map.Entry<Integer,String>> set = map.entrySet();
+        Iterator<Map.Entry<Integer,String>> iterator = set.iterator() ;
+        while (iterator.hasNext()) {
+            Map.Entry<Integer,String> entry = iterator.next() ;
+            System.out.println(entry.getKey()+" = " +entry.getValue()) ;
+        }
+    }
+}
